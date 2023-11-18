@@ -1,0 +1,114 @@
+﻿@model IEnumerable<RandomGenerate.Models.Word>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+<h1>Random Generate</h1>
+
+<div style="float:left">
+
+    <form asp-action="CreateVoc">
+        <button type="submit" class="btn btn-success btn-lg me-2">Create New String</button>
+    </form>
+</div>
+
+<div style="float:left">
+    <form asp-action="DeleteAll">
+        <button type="submit" class="btn btn-danger btn-lg">Delete All</button>
+    </form>
+</div>
+    &nbsp;
+
+<br /><br />
+
+<div>
+
+    <table id="myTable" class="table table-hover">
+
+
+        <thead>
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(model => model.VocableIndex)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vocable)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Counter)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VocableIndex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vocable)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Counter)
+                    </td>
+                    <td>
+                        @*  <a asp-action="Edit" asp-route-id="@item.VocableId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.VocableId">Details</a> |*@
+                        <a asp-action="Delete" asp-route-id="@item.VocableId" style="color:#FF0000;">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+@*"aaSorting": []*@
+
+<script>
+    $('#myTable').DataTable({
+
+        "aaSorting": [],
+
+        language: {
+            info: "_TOTAL_ kayıttan _START_ - _END_ kayıt gösteriliyor.",
+            infoEmpty: "Gösterilecek hiç kayıt yok.",
+            loadingRecords: "Kayıtlar yükleniyor.",
+            lengthMenu: "Sayfada _MENU_ kayıt göster",
+            zeroRecords: "Tablo boş",
+            search: "Arama:",
+            infoFiltered: "(toplam _MAX_ kayıttan filtrelenenler)",
+            buttons: {
+                copyTitle: "Panoya kopyalandı.",
+                copySuccess: "Panoya %d satır kopyalandı",
+                copy: "Kopyala",
+                print: "Yazdır",
+            },
+
+            paginate: {
+                first: "İlk",
+                previous: "Önceki",
+                next: "Sonraki",
+                last: "Son"
+            },
+        }
+    });
+</script>
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.css" />
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/rg-1.0.0/datatables.min.js"></script>
